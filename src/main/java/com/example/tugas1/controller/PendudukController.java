@@ -11,8 +11,13 @@ public class PendudukController {
 	@Autowired
 	PendudukService pendudukDAO;
 	
+	@RequestMapping("/master")
+	public String master() {
+		return "layout/master";
+	}
+	
 	@RequestMapping("/")
 	public String index() {
-		return "master";
+		return "index";
 	}
 }
