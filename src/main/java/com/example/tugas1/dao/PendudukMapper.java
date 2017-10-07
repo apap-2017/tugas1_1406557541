@@ -9,7 +9,10 @@ import com.example.tugas1.model.PendudukModel;
 @Mapper
 public interface PendudukMapper {
 	
-	@Select("select * from penduduk where nik = #{nik}")
+	@Select("SELECT *"
+			+ "FROM penduduk "
+			+ "WHERE nik = #{nik}")
 	PendudukModel selectPenduduk (@Param("nik") String nik);
-
+	
+	
 }
