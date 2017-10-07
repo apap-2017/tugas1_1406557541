@@ -28,6 +28,6 @@ public class PendudukController {
 	public String indexSubmit(Model model, @RequestParam(value="nik", required=true) String nik) {
 		PendudukModel penduduk = pendudukDAO.selectPenduduk(nik);
 		model.addAttribute("penduduk", penduduk);
-		return "penduduk/penduduk-result";
+		return "penduduk/penduduk-view";
 	}
 }

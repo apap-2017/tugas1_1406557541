@@ -17,8 +17,7 @@ public class PendudukServiceDatabase implements PendudukService {
 	
 	@Override
 	public PendudukModel selectPenduduk(String nik) {
-		// TODO Auto-generated method stub
-		log.info ("select student with nik {}", nik);
+		log.info ("select penduduk with nik {}", nik);
 		return pendudukMapper.selectPenduduk(nik);
 	}
 

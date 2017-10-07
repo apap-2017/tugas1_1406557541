@@ -3,12 +3,11 @@
 	th:include="/layout/master :: master">
 
 <div th:fragment="content" class="container">
+	<!-- Container -->
+	<h3 class="my-4" th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}">Lihat
+		Penduduk</h3>
 	<!--  Lihat Penduduk Berdasarkan NIK -->
 	<div class="content">
-		<h3>
-			<b th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}">Lihat Penduduk</b>
-		</h3>
-		<br />
 		<div class="table-container">
 			<table class="table table-hover table-condensed" id="tabel-mhs"
 				cellspacing="0" style="font-size: 16px;">
