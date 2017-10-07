@@ -1,0 +1,8 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layout/master :: master">
+<div th:fragment="content" class="container">
+    	<h1 class="my-4" th:text="'Error'">Error Page</h1>
+		<p th:text="${errormessage}">Error message</p>
+</div>>
+</html>

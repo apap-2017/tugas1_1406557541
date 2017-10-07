@@ -15,10 +15,15 @@ public class KeluargaController {
 	KeluargaService keluargaDAO;
 	
 	@RequestMapping("/keluarga")
-	public String indexSubmit(Model model, @RequestParam(value="nomor_kk", required=true) String nomor_kk) {
+	public String viewKeluargaSubmit(Model model, @RequestParam(value="nomor_kk", required=true) String nomor_kk) {
 		KeluargaModel keluarga = keluargaDAO.selectKeluarga(nomor_kk);
-		model.addAttribute("keluarga", keluarga);
-		return "keluarga/keluarga-view";
+		if (keluarga != null) {
+			model.addAttribute("keluarga", keluarga);
+			return "keluarga/keluarga-view";
+		} else {
+			model.addAttribute("errormessage", "Keluarga dengan NKK " + nomor_kk + " tidak ditemukan, mohon cek kembali Nomor Kartu Keluarga Anda.");
+			return "layout/error";
+		}
 	}
 	
 	

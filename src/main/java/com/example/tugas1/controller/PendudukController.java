@@ -27,7 +27,12 @@ public class PendudukController {
 	@RequestMapping("/penduduk")
 	public String indexSubmit(Model model, @RequestParam(value="nik", required=true) String nik) {
 		PendudukModel penduduk = pendudukDAO.selectPenduduk(nik);
-		model.addAttribute("penduduk", penduduk);
-		return "penduduk/penduduk-view";
+		if (penduduk != null) {
+			model.addAttribute("penduduk", penduduk);
+			return "penduduk/penduduk-view";
+		} else {
+			model.addAttribute("errormessage", "Penduduk dengan NIK " + nik + " tidak ditemukan, mohon cek kembali Nomor Induk Kependudukan Anda.");
+			return "layout/error";
+		}
 	}
 }
