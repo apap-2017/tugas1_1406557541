@@ -31,7 +31,7 @@
 				<tr>
 					<td><b>Alamat</b></td>
 					<td>:</td>
-					<td th:text="''">Penduduk Alamat</td>
+					<td th:text="${penduduk.keluarga.alamat} ">Penduduk Alamat</td>
 				</tr>
 				<tr>
 					<td width="25%"><b>RT/RW</b></td>
@@ -43,7 +43,7 @@
 					<td>:</td>
 					<td th:text="''">Penduduk Kelurahan/Desa</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><b>Kecamatan</b></td>
 					<td>:</td>
 					<td th:text="''">Penduduk Kecamatan</td>
@@ -56,36 +56,36 @@
 				<tr>
 					<td><b>Golongan Darah</b></td>
 					<td>:</td>
-					<td th:text="${penduduk.golongan_darah}">Penduduk Golongan
+					<td th:text="${p.golongan_darah}">Penduduk Golongan
 						Darah</td>
 				</tr>
 				<tr>
 					<td><b>Agama</b></td>
 					<td>:</td>
-					<td th:text="${penduduk.agama}">Penduduk Agama</td>
+					<td th:text="${p.agama}">Penduduk Agama</td>
 				</tr>
 				<tr>
 					<td><b>Status Perkawinan</b></td>
 					<td>:</td>
-					<td th:text="${penduduk.status_perkawinan}">Status Pekawinan</td>
+					<td th:text="${p.status_perkawinan}">Status Pekawinan</td>
 				</tr>
 				<tr>
 					<td><b>Pekerjaan</b></td>
 					<td>:</td>
-					<td th:text="${penduduk.pekerjaan}">Pekerjaan</td>
+					<td th:text="${p.pekerjaan}">Pekerjaan</td>
 				</tr>
 				<tr>
 					<td><b>Kewarganegaraan</b></td>
 					<td>:</td>
-					<td th:if="${penduduk.is_wni} == '1'">WNI</td>
-					<td th:if="${penduduk.is_wni} == '0'">WNA</td>
+					<td th:if="${p.is_wni} == '1'">WNI</td>
+					<td th:if="${p.is_wni} == '0'">WNA</td>
 				</tr>
 				<tr>
 					<td><b>Status Kematian</b></td>
 					<td>:</td>
-					<td th:if="${penduduk.is_wafat} == '1'">Wafat</td>
-					<td th:if="${penduduk.is_wafat} == '0'">Hidup</td>
-				</tr>
+					<td th:if="${p.is_wafat} == '1'">Wafat</td>
+					<td th:if="${p.is_wafat} == '0'">Hidup</td>
+				</tr> -->
 			</table>
 			<button type="submit" class="btn btn-primary">Nonaktifkan</button>
 		</div>

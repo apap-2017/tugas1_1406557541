@@ -24,4 +24,8 @@ private String status_perkawinan;
 private String status_dalam_keluarga;
 private String golongan_darah;
 private byte is_wafat;
+private KeluargaModel keluarga;
+private KelurahanModel kelurahan;
+private KecamatanModel kecamatan;
+private KotaModel kota;
 }
