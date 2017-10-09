@@ -12,4 +12,5 @@ private String id;
 private String id_kota;
 private String kode_kecamatan;
 private String nama_kecamatan;
+private KotaModel kota;
 }

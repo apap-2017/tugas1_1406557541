@@ -13,4 +13,6 @@ private String id_kecamatan;
 private String kode_kelurahan;
 private String nama_kelurahan;
 private String kode_pos;
+private KecamatanModel kecamatan;
+private KotaModel kota;
 }

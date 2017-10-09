@@ -15,4 +15,7 @@ private String RT;
 private String RW;
 private String id_kelurahan;
 private byte is_tidak_berlaku;
+private KelurahanModel kelurahan;
+private KecamatanModel kecamatan;
+private KotaModel kota;
 }

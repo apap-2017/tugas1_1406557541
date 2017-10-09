@@ -35,4 +35,9 @@ public class PendudukController {
 			return "layout/error";
 		}
 	}
+	
+	@RequestMapping("/penduduk/add")
+	public String indexAdd() {
+		return "penduduk/penduduk-add";
+	}
 }
