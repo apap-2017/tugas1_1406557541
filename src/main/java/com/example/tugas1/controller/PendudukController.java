@@ -25,7 +25,7 @@ public class PendudukController {
 	}
 	
 	@RequestMapping("/penduduk")
-	public String indexSubmit(Model model, @RequestParam(value="nik", required=true) String nik) {
+	public String viewPendudukSubmit(Model model, @RequestParam(value="nik", required=true) String nik) {
 		PendudukModel penduduk = pendudukDAO.selectPenduduk(nik);
 		if (penduduk != null) {
 			model.addAttribute("penduduk", penduduk);

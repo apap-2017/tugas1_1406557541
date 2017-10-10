@@ -19,6 +19,7 @@ public class KeluargaController {
 		KeluargaModel keluarga = keluargaDAO.selectKeluarga(nomor_kk);
 		if (keluarga != null) {
 			model.addAttribute("keluarga", keluarga);
+			System.out.println(keluarga);
 			return "keluarga/keluarga-view";
 		} else {
 			model.addAttribute("errormessage", "Keluarga dengan NKK " + nomor_kk + " tidak ditemukan, mohon cek kembali Nomor Kartu Keluarga Anda.");

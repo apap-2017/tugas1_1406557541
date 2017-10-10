@@ -32,22 +32,50 @@
 				<tr>
 					<td width="10%"><b>Kelurahan/Desa</b></td>
 					<td style="width: 1%;">:</td>
-					<td th:text="''">Keluarga Kelurahan/Desa</td>
+					<td th:text="${keluarga.kelurahan.nama_kelurahan}">Keluarga Kelurahan/Desa</td>
 				</tr>
 				<tr>
 					<td width="10%"><b>Kecamatan</b></td>
 					<td style="width: 1%;">:</td>
-					<td th:text="''">Keluarga Kecamatan</td>
+					<td th:text="${keluarga.kelurahan.kecamatan.nama_kecamatan}">Keluarga Kecamatan</td>
 				</tr>
 				<tr>
 					<td width="10%"><b>Kota</b></td>
 					<td style="width: 1%;">:</td>
-					<td th:text="''">Keluarga Kota</td>
+					<td th:text="${keluarga.kelurahan.kecamatan.kota.nama_kota}">Keluarga Kota</td>
 				</tr>
 			</table>
 		</div>
 		<!--  end of Data Keluarga -->
 		<hr />
+
+		<!--  Data Penduduk -->
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nama Lengkap</th>
+					<th>Jenis Kelamin</th>
+				</tr>
+			</thead>
+			<tbody>
+				<div th:each="penduduk,iterationStatus: ${keluarga.anggotaKeluarga}">
+					<tr>
+						<td th:text="${penduduk.nama}"></td>
+						<td th:text="${penduduk.nik}"></td>
+						<td th:text="${penduduk.tempat_lahir}"></td>
+						<td th:text="${penduduk.tanggal_lahir}"></td>
+						<td th:text="${penduduk.agama}"></td>
+						<td th:text="${penduduk.pekerjaan}"></td>
+						<td th:text="${penduduk.status_perkawinan}"></td>
+						<td th:text="${penduduk.status_dalam_keluarga}"></td>
+						<td th:if="${penduduk.is_wni} == '1'">WNI</td>
+						<td th:if="${penduduk.is_wni} == '0'">WNA</td>
+					</tr>
+				</div>
+			</tbody>
+		</table>
+		<!--  end of Data Keluarga -->
+
 	</div>
 
 	<!--  end of Lihat Keluarga Berdasarkan Nomor KK -->
