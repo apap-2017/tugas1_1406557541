@@ -54,7 +54,15 @@
 			<thead>
 				<tr>
 					<th>Nama Lengkap</th>
+					<th>NIK</th>
 					<th>Jenis Kelamin</th>
+					<th>Tempat Lahir</th>
+					<th>Tanggal Lahir</th>
+					<th>Agama</th>
+					<th>Pekerjaan</th>
+					<th>Status Perkawinan</th>
+					<th>Status dalam Keluarga</th>
+					<th>Kewarganegaraan</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -62,7 +70,9 @@
 					<tr>
 						<td th:text="${penduduk.nama}"></td>
 						<td th:text="${penduduk.nik}"></td>
-						<td th:text="${penduduk.tempat_lahir}"></td>
+						<td th:if="${penduduk.jenis_kelamin} == '1'">Perempuan</td>
+						<td th:if="${penduduk.jenis_kelamin} == '0'">Laki-laki</td>
+						<td th:text="${#dates.format(penduduk.tanggal_lahir, 'dd MMMM yyyy')}"></td>
 						<td th:text="${penduduk.tanggal_lahir}"></td>
 						<td th:text="${penduduk.agama}"></td>
 						<td th:text="${penduduk.pekerjaan}"></td>

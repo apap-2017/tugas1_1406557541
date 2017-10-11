@@ -38,7 +38,7 @@ public interface KeluargaMapper {
 	
 	@Select("SELECT * "
 			+ "FROM kelurahan "
-			+"WHERE id = #{id}")
+			+"WHERE id = #{id_kelurahan}")
 	@Results (value = {
 			@Result(property = "kecamatan", column = "id", javaType = KecamatanModel.class, one = @One(select = "selectKecamatan")),
 	})
@@ -47,7 +47,7 @@ public interface KeluargaMapper {
 	
 	@Select("SELECT * "
 			+ "FROM kecamatan "
-			+"WHERE id = #{id}")
+			+"WHERE id = #{id_kecamatan}")
 	@Results (value = {
 			@Result(property = "kota", column = "id", javaType = KotaModel.class, one = @One(select = "selectKota")),
 	})
@@ -56,6 +56,6 @@ public interface KeluargaMapper {
 	
 	@Select("SELECT * "
 			+ "FROM kota "
-			+"WHERE id = #{id}")
+			+"WHERE id = #{id_kota}")
 	KotaModel selectKota(@Param("id_kota") String id);
 }

@@ -29,6 +29,7 @@ public class PendudukController {
 		PendudukModel penduduk = pendudukDAO.selectPenduduk(nik);
 		if (penduduk != null) {
 			model.addAttribute("penduduk", penduduk);
+			System.out.println(penduduk);
 			return "penduduk/penduduk-view";
 		} else {
 			model.addAttribute("errormessage", "Penduduk dengan NIK " + nik + " tidak ditemukan, mohon cek kembali Nomor Induk Kependudukan Anda.");
