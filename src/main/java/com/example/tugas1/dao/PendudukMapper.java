@@ -2,6 +2,7 @@ package com.example.tugas1.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -18,25 +19,6 @@ import com.example.tugas1.model.PendudukModel;
 
 @Mapper
 public interface PendudukMapper {
-	
-	/*@Select("SELECT *"
-			+ " FROM penduduk p"
-			+ " JOIN keluarga k"
-				+ " ON p.id_keluarga = k.id"
-			+ " JOIN kelurahan kl"
-				+ " ON k.id_kelurahan = kl.id"
-			+ " JOIN kecamatan kc"
-				+ " ON kl.id_kecamatan = kc.id"
-			+ " JOIN kota kt"
-				+ " ON kc.id_kota = kt.id"
-			+ " WHERE nik = #{nik}")
-	@Results(value = { @Result(property = "nik", column = "nik"), @Result(property = "nama", column = "nama"),
-			@Result(property = "tempat_lahir", column = "tempat_lahir"),
-			@Result(property = "tanggal_lahir", column = "tanggal_lahir"),
-			@Result(property = "id_keluarga", column = "id_keluarga"),
-			@Result(property = "keluarga", column = "id", javaType = KeluargaModel.class, one = @One(select = "selectKeluarga")) })
-	PendudukModel selectPenduduk (@Param("nik") String nik);*/
-	
 	@Select ("SELECT id, nik, nama, tempat_lahir, tanggal_lahir, id_keluarga, golongan_darah, agama, status_perkawinan, pekerjaan, is_wni, is_wafat "
 			+ "FROM penduduk "
 			+ "WHERE nik = #{nik}")
@@ -94,4 +76,5 @@ public interface PendudukMapper {
 			@Result(property = "id", column = "id"),
 			@Result(property = "nama_kota", column = "nama_kota") })
 	KotaModel selectKota(@Param("id") String id);
+	
 }

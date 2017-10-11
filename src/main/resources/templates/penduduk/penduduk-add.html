@@ -3,47 +3,111 @@
 	th:include="/layout/master :: master">
 
 <div th:fragment="content" class="container">
-	<h3 class="my-4" th:text="'Lihat Data Penduduk'">Tambah Penduduk</h3>
+	<h3 class="my-4" th:text="'Tambah Penduduk'">Tambah Penduduk</h3>
 	<!--  Tambah Penduduk -->
 	<div class="row">
-		<div class="col-lg-8 mb-4">
-			<form name="sentMessage" id="contactForm" action="/penduduk"
-				method="get">
-				<div class="control-group form-group">
-					<div class="controls">
-						<label>Masukkan Nama</label> <input type="text"
-							class="form-control" id="nama" name="nama" required="true" />
-						<p class="help-block"></p>
-					</div>
-					<div class="controls">
-						<label>Tempat Lahir</label> <input type="text"
-							class="form-control" id="tempat_lahir" name="tempat_lahir"
-							required="true" />
-						<p class="help-block"></p>
-					</div>
-					<div class="controls">
-					<!-- Pick Date -->
-						<label>Tanggal Lahir</label> <input type="text"
-							class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-							required="true" />
-						<p class="help-block"></p>
-					</div>
-					<div class="controls">
-						<!-- Masukin data dari tabel -->
-						<label>Golongan Darah</label> <select class="custom-select">
-							<option selected = null >Pilih Golongan darah</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select>
-					</div>
-					<div class="controls">
-						<label>Agama</label> <input type="text"
-							class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-							required="true" />
-						<p class="help-block"></p>
-					</div>
+		<div class="col-lg-12">
+			<form name="sentMessage" id="addPendudukForm" action="/penduduk/tambah" method="post">
+				<div class="form-group">
+						<label for="nama" class="col-md-10 control-label">Nama</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="nama" class="form-control" type="text" required="required" />
+							</div>
+						</div>
 				</div>
+				<div class="form-group">
+						<label for="tempat_lahir" class="col-md-10 control-label">Tempat Lahir</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="tempat_lahir" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="tanggal_lahir" class="col-md-10 control-label">Tanggal Lahir</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="tanggal_lahir" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="golongan_darah" class="col-md-10 control-label">Golongan Darah</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<select required="required" name="golongan_darah" class="selectpicker form-control">
+								<option value="">Pilihan Golongan Darah</option>
+								<option value="AB">AB</option>
+								<option value="A">A</option>
+							</select>
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="agama" class="col-md-10 control-label">Agama</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="agama" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="status_perkawinan" class="col-md-10 control-label">Status Perkawinan</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<select required="required" name="status_perkawinan" class="selectpicker form-control">
+								<option value="">Pilihan Status Perkawinan</option>
+								<option value="Belum Kawin">Belum Kawin</option>
+								<option value="Kawin">Kawin</option>
+							</select>
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="pekerjaan" class="col-md-10 control-label">Pekerjaan</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="pekerjaan" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="kewarganegaraan" class="col-md-10 control-label">Kewarganegaraan</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="kewarganegaraan" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="status_kematian" class="col-md-10 control-label">Status Kematian</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<select required="required" name="status_kematian" class="selectpicker form-control">
+								<option value="">Pilihan Status Kematian</option>
+								<option value="Belum Kawin">Hidup</option>
+								<option value="Kawin">Wafat</option>
+							</select>
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
+						<label for="id_keluarga" class="col-md-10 control-label">Id Keluarga</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="id_keluarga" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<!-- <div class="form-group">
+						<label for="golongan_darah" class="col-md-8 control-label">Golongan Darah</label>
+						<div class="col-md-8 inputGroupContainer">
+							<div class="input-group">
+								<input name="golongan_darah" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div> -->
 				<button type="submit" class="btn btn-primary">Lihat</button>
 			</form>
 		</div>

@@ -21,4 +21,9 @@ public class PendudukServiceDatabase implements PendudukService {
 		return pendudukMapper.selectPenduduk(nik);
 	}
 
+/*	@Override
+	public void addPenduduk(PendudukModel penduduk) {
+		PendudukMapper.addPenduduk(penduduk);
+	}*/
+
 }

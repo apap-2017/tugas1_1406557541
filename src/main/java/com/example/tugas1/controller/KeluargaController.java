@@ -27,5 +27,8 @@ public class KeluargaController {
 		}
 	}
 	
-	
+	@RequestMapping("/keluarga/add")
+	public String indexAdd() {
+		return "keluarga/keluarga-add";
+	}
 }
