@@ -30,14 +30,14 @@
 				<tr>
 					<td><b>Alamat</b></td>
 					<td>:</td>
-					<td th:text="${penduduk.keluarga.alamat}">Penduduk Alamat</td>
+					<td th:text="${keluarga.alamat}">Penduduk Alamat</td>
 				</tr>
 				<tr>
 					<td width="25%"><b>RT/RW</b></td>
 					<td style="width: 1%;">:</td>
-					<td th:text="${penduduk.keluarga.RT} + '/' + ${penduduk.keluarga.RW}">Penduduk RT/RW</td>
+					<td th:text="${keluarga.RT} + '/' + ${keluarga.RW}">Penduduk RT/RW</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td><b>Kelurahan/Desa</b></td>
 					<td>:</td>
 					<td th:text="${penduduk.keluarga.kelurahan.nama_kelurahan}">Penduduk Kelurahan/Desa</td>
@@ -47,6 +47,7 @@
 					<td>:</td>
 					<td th:text="${penduduk.keluarga.kelurahan.kecamatan.nama_kecamatan}">Penduduk Kecamatan</td>
 				</tr>
+				-->
 				<!-- <tr>
 					<td><b>Kota</b></td>
 					<td>:</td>
@@ -86,7 +87,7 @@
 					<td th:if="${penduduk.is_wafat} == '0'">Hidup</td>
 				</tr>
 			</table>
-			<button type="submit" class="btn btn-primary">Nonaktifkan</button>
+			<a th:href="'/penduduk/delete/' + ${penduduk.nik}"><button type="button" class="btn btn-primary">Nonaktifkan</button></a>
 		</div>
 	</div>
 

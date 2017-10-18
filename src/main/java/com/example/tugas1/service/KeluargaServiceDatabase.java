@@ -19,4 +19,10 @@ public class KeluargaServiceDatabase implements KeluargaService {
 		log.info ("select keluarga with nomor_kk {}", nomor_kk);
 		return keluargaMapper.selectKeluarga(nomor_kk);
 	}
+	
+	@Override
+	public KeluargaModel selectKeluargaById(String id) {
+		log.info ("select keluarga with nomor_kk {}", id);
+		return keluargaMapper.selectKeluargaById(id);
+	}
 }

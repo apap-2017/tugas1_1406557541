@@ -20,6 +20,21 @@ public class PendudukServiceDatabase implements PendudukService {
 		log.info ("select penduduk with nik {}", nik);
 		return pendudukMapper.selectPenduduk(nik);
 	}
+	
+	@Override
+	public PendudukModel selectPendudukAja(String nik) {
+		log.info ("select penduduk with nik {}", nik);
+		return pendudukMapper.selectPendudukAja(nik);
+	}
+	
+	/*
+	 * Mengubah penduduk menjadi wafat
+	 */
+	@Override
+	public void deletePenduduk(String nik) {
+		log.info ("DELETE penduduk with nik {}", nik);
+		pendudukMapper.deletePenduduk(nik);
+	}
 
 /*	@Override
 	public void addPenduduk(PendudukModel penduduk) {
