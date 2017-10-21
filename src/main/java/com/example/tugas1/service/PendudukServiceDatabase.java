@@ -36,9 +36,8 @@ public class PendudukServiceDatabase implements PendudukService {
 		pendudukMapper.deletePenduduk(nik);
 	}
 
-/*	@Override
+	@Override
 	public void addPenduduk(PendudukModel penduduk) {
-		PendudukMapper.addPenduduk(penduduk);
-	}*/
-
+		pendudukMapper.addPenduduk(penduduk);
+	}
 }

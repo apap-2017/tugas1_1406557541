@@ -36,7 +36,11 @@
 						<label for="jenis_kelamin" class="col-md-10 control-label">Jenis Kelamin</label>
 						<div class="col-md-10 inputGroupContainer">
 							<div class="input-group">
-								<input name="jenis_kelamin" class="form-control" type="text" required="required" />
+								<select required="required" name="jenis_kelamin" class="selectpicker form-control">
+								<option value="">Pilihan Golongan Darah</option>
+								<option value="0">Laki-laki</option>
+								<option value="1">Perempuan</option>
+							</select>
 							</div>
 						</div>
 				</div>
@@ -87,6 +91,18 @@
 						</div>
 				</div>
 				<div class="form-group">
+						<label for="status_dalam_keluarga" class="col-md-10 control-label">Status Dalam Keluarga</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<select required="required" name="status_dalam_keluarga" class="selectpicker form-control">
+								<option value="">Pilihan Status Dalam Keluarga</option>
+								<option value="Kepala Keluarga">Kepala Keluarga</option>
+								<option value="Anak">Anak</option>
+							</select>
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
 						<label for="pekerjaan" class="col-md-10 control-label">Pekerjaan</label>
 						<div class="col-md-10 inputGroupContainer">
 							<div class="input-group">
@@ -95,25 +111,25 @@
 						</div>
 				</div>
 				<div class="form-group">
-						<label for="kewarganegaraan" class="col-md-10 control-label">Kewarganegaraan</label>
+						<label for="is_wni" class="col-md-10 control-label">Kewarganegaraan</label>
 						<div class="col-md-10 inputGroupContainer">
 							<div class="input-group">
-								<select required="required" name="kewarganegaraan" class="selectpicker form-control">
+								<select required="required" name="is_wni" class="selectpicker form-control">
 								<option value="">Pilihan Kewarganegaraan</option>
-								<option value="true">WNA</option>
-								<option value="false">WNI</option>
+								<option value="0">WNA</option>
+								<option value="1">WNI</option>
 							</select>
 							</div>
 						</div>
 				</div>
 				<div class="form-group">
-						<label for="status_kematian" class="col-md-10 control-label">Status Kematian</label>
+						<label for="is_wafat" class="col-md-10 control-label">Status Kematian</label>
 						<div class="col-md-10 inputGroupContainer">
 							<div class="input-group">
-								<select required="required" name="status_kematian" class="selectpicker form-control">
+								<select required="required" name="is_wafat" class="selectpicker form-control">
 								<option value="">Pilihan Status Kematian</option>
-								<option value="true">Hidup</option>
-								<option value="false">Wafat</option>
+								<option value="0">Hidup</option>
+								<option value="1">Wafat</option>
 							</select>
 							</div>
 						</div>

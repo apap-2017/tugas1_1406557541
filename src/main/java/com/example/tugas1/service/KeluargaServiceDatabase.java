@@ -25,4 +25,9 @@ public class KeluargaServiceDatabase implements KeluargaService {
 		log.info ("select keluarga with nomor_kk {}", id);
 		return keluargaMapper.selectKeluargaById(id);
 	}
+
+	@Override
+	public void addKeluarga(KeluargaModel keluarga) {
+		keluargaMapper.addKeluarga(keluarga);
+	}
 }

@@ -1,7 +1,5 @@
 package com.example.tugas1.model;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PendudukModel {
-private String id;
+private int id;
 private String nik;
 private String nama;
 private String tempat_lahir;

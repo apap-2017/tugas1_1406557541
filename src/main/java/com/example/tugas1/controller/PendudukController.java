@@ -58,12 +58,20 @@ public class PendudukController {
 		}
 	}*/
 	
-	@RequestMapping("/penduduk/add")
-	public String indexAdd() {
+	
+	/*
+	 * Menampilkan form untuk menginput data penduduk
+	 */
+	@RequestMapping("/penduduk/tambah")
+	public String formAdd() {
 		return "penduduk/penduduk-add";
 	}
 	
-	@RequestMapping("/penduduk/tambah")
+	
+	/*
+	 * Submit & proses form yang sudah dimasukkan sesuai dengan ketentuan
+	 */
+	@RequestMapping("/penduduk/tambah/submit")
 	public String addSubmit(Model model,
 			@RequestParam(value = "nama", required = false) String nama,
 			@RequestParam(value = "tempat_lahir", required = false) String tempat_lahir,
@@ -72,18 +80,27 @@ public class PendudukController {
 			@RequestParam(value = "golongan_darah", required = false) String golongan_darah,
 			@RequestParam(value = "agama", required = false) String agama,
 			@RequestParam(value = "status_perkawinan", required = false) String status_perkawinan,
+			@RequestParam(value = "status_dalam_keluarga", required = false) String status_dalam_keluarga,
 			@RequestParam(value = "pekerjaan", required = false) String pekerjaan,
-			@RequestParam(value = "kewarganegaraan", required = false) boolean kewarganegaraan,
-			@RequestParam(value = "status_kematian", required = false) boolean status_kematian,
+			@RequestParam(value = "is_wni", required = false) boolean is_wni,
+			@RequestParam(value = "is_wafat", required = false) boolean is_wafat,
 			@RequestParam(value = "id_keluarga", required = false) String id_keluarga) {
 		KeluargaModel keluargaa= keluargaDAO.selectKeluargaById(id_keluarga);
+		
 		String keluarga = keluargaa.getKelurahan().getKecamatan().getKode_kecamatan();
 		String nikAwal = keluarga.substring(0,6);
 		String tanggal = tanggal_lahir.substring(8, 10);
 		String bulan = tanggal_lahir.substring(5, 7);
 		String tahun = tanggal_lahir.substring(2, 4);
-		String nikTengah = tanggal+bulan+tahun;
 		
+		//kalo cewe
+		int tanggal2 = Integer.parseInt(tanggal);
+			if(jenis_kelamin.equalsIgnoreCase("1")){
+				tanggal2 += 40;
+			}
+		tanggal = "" + tanggal2;
+		
+		String nikTengah = tanggal+bulan+tahun;
 		boolean found = false;
 		String nik = "";
 		int i = 0;
@@ -96,10 +113,12 @@ public class PendudukController {
 				found = true;
 			}
 		}
-		model.addAttribute("test", nik);
-		model.addAttribute("keluarga", keluarga);
-
-		return "penduduk/success-coba";
+		
+		//construct new penduduk
+		PendudukModel penduduk = new PendudukModel (0, nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, is_wni, id_keluarga, agama, pekerjaan, status_perkawinan, status_dalam_keluarga, golongan_darah, is_wafat, null, null, null, null);
+		pendudukDAO.addPenduduk(penduduk);
+		model.addAttribute("penduduk", penduduk);
+		return "penduduk/success-add";
 	}
 	
 	

@@ -1,9 +1,6 @@
 package com.example.tugas1.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -100,7 +97,19 @@ public interface PendudukMapper {
 			@Result(property = "nama_kota", column = "nama_kota") })
 	KotaModel selectKota(@Param("id") String id);
 	
+	
+	/*
+	 * Method deletePenduduk untuk menghapus data penduduk dengan mengubah status wafat
+	 */
 	@Update("UPDATE penduduk SET is_wafat = 1 "
 			+ "WHERE nik = #{nik}")
     void deletePenduduk (String nik);
+	
+	
+	/*
+	 * Method addPenduduk untuk menambah penduduk ke database
+	 */
+	@Insert("INSERT INTO penduduk (nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, is_wni, id_keluarga, agama, pekerjaan, status_perkawinan, status_dalam_keluarga, golongan_darah, is_wafat) VALUES "
+			+ "(#{nik}, #{nama}, #{tempat_lahir}, #{tanggal_lahir}, #{jenis_kelamin}, #{is_wni}, #{id_keluarga}, #{agama}, #{pekerjaan}, #{status_perkawinan}, #{status_dalam_keluarga}, #{golongan_darah}, #{is_wafat})")
+	void addPenduduk(PendudukModel penduduk);
 }
