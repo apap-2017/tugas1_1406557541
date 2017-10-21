@@ -59,7 +59,7 @@ public interface PendudukMapper {
 			@Result(property = "pekerjaan", column = "pekerjaan"),
 			@Result(property = "is_wni", column = "is_wni"),
 			@Result(property = "is_wafat", column = "is_wafat"),
-			@Result(property = "keluarga", column = "id", javaType = KeluargaModel.class, one = @One(select = "selectKeluarga")) })
+			@Result(property = "keluarga", column = "id_keluarga", javaType = KeluargaModel.class, one = @One(select = "selectKeluarga")) })
 	PendudukModel selectPenduduk (@Param("nik") String nik);
 	
 	@Select("SELECT id, nomor_kk, alamat, RT, RW, id_kelurahan "
@@ -71,7 +71,7 @@ public interface PendudukMapper {
 			@Result(property = "RT", column = "RT"),
 			@Result(property = "RW", column = "RW"),
 			@Result(property = "id_kelurahan", column = "id_kelurahan"),
-			@Result(property = "kelurahan", column = "id", javaType = KelurahanModel.class, one = @One(select = "selectKelurahan")) })
+			@Result(property = "kelurahan", column = "id_kelurahan", javaType = KelurahanModel.class, one = @One(select = "selectKelurahan")) })
 	KeluargaModel selectKeluarga(@Param("id") String id);
 
 	@Select("SELECT id, id_kecamatan, nama_kelurahan "
@@ -80,7 +80,7 @@ public interface PendudukMapper {
 	@Results(value = {
 			@Result(property = "id", column = "id"),
 			@Result(property = "nama_kelurahan", column = "nama_kelurahan"),
-			@Result(property = "kecamatan", column = "id", javaType = KecamatanModel.class, one = @One(select = "selectKecamatan")) })
+			@Result(property = "kecamatan", column = "id_kecamatan", javaType = KecamatanModel.class, one = @One(select = "selectKecamatan")) })
 	KelurahanModel selectKelurahan(@Param("id") String id);
 	
 	@Select("SELECT id, nama_kecamatan, id_kota "
@@ -89,7 +89,7 @@ public interface PendudukMapper {
 	@Results(value = {
 			@Result(property = "id", column = "id"),
 			@Result(property = "nama_kecamatan", column = "nama_kecamatan"),
-			@Result(property = "kota", column = "id", javaType = KotaModel.class, one = @One(select = "selectKota")) })
+			@Result(property = "kota", column = "id_kota", javaType = KotaModel.class, one = @One(select = "selectKota")) })
 	KecamatanModel selectKecamatan(@Param("id") String id);
 	
 	@Select("SELECT id, nama_kota "

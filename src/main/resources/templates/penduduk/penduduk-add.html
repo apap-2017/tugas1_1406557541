@@ -33,6 +33,14 @@
 						</div>
 				</div>
 				<div class="form-group">
+						<label for="jenis_kelamin" class="col-md-10 control-label">Jenis Kelamin</label>
+						<div class="col-md-10 inputGroupContainer">
+							<div class="input-group">
+								<input name="jenis_kelamin" class="form-control" type="text" required="required" />
+							</div>
+						</div>
+				</div>
+				<div class="form-group">
 						<label for="golongan_darah" class="col-md-10 control-label">Golongan Darah</label>
 						<div class="col-md-10 inputGroupContainer">
 							<div class="input-group">
@@ -92,8 +100,8 @@
 							<div class="input-group">
 								<select required="required" name="kewarganegaraan" class="selectpicker form-control">
 								<option value="">Pilihan Kewarganegaraan</option>
-								<option value="Belum Kawin">WNA</option>
-								<option value="Kawin">WNI</option>
+								<option value="true">WNA</option>
+								<option value="false">WNI</option>
 							</select>
 							</div>
 						</div>
@@ -104,8 +112,8 @@
 							<div class="input-group">
 								<select required="required" name="status_kematian" class="selectpicker form-control">
 								<option value="">Pilihan Status Kematian</option>
-								<option value="Belum Kawin">Hidup</option>
-								<option value="Kawin">Wafat</option>
+								<option value="true">Hidup</option>
+								<option value="false">Wafat</option>
 							</select>
 							</div>
 						</div>
