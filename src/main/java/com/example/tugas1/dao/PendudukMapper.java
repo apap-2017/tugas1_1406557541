@@ -69,7 +69,7 @@ public interface PendudukMapper {
 			@Result(property = "RW", column = "RW"),
 			@Result(property = "id_kelurahan", column = "id_kelurahan"),
 			@Result(property = "kelurahan", column = "id_kelurahan", javaType = KelurahanModel.class, one = @One(select = "selectKelurahan")) })
-	KeluargaModel selectKeluarga(@Param("id") String id);
+	KeluargaModel selectKeluarga(@Param("id") int id);
 
 	@Select("SELECT id, id_kecamatan, nama_kelurahan "
 			+ "FROM kelurahan "
@@ -78,7 +78,7 @@ public interface PendudukMapper {
 			@Result(property = "id", column = "id"),
 			@Result(property = "nama_kelurahan", column = "nama_kelurahan"),
 			@Result(property = "kecamatan", column = "id_kecamatan", javaType = KecamatanModel.class, one = @One(select = "selectKecamatan")) })
-	KelurahanModel selectKelurahan(@Param("id") String id);
+	KelurahanModel selectKelurahan(@Param("id") int id);
 	
 	@Select("SELECT id, nama_kecamatan, id_kota "
 			+ "FROM kecamatan "
@@ -87,7 +87,7 @@ public interface PendudukMapper {
 			@Result(property = "id", column = "id"),
 			@Result(property = "nama_kecamatan", column = "nama_kecamatan"),
 			@Result(property = "kota", column = "id_kota", javaType = KotaModel.class, one = @One(select = "selectKota")) })
-	KecamatanModel selectKecamatan(@Param("id") String id);
+	KecamatanModel selectKecamatan(@Param("id") int id);
 	
 	@Select("SELECT id, nama_kota "
 			+ "FROM kota "
@@ -95,7 +95,7 @@ public interface PendudukMapper {
 	@Results(value = {
 			@Result(property = "id", column = "id"),
 			@Result(property = "nama_kota", column = "nama_kota") })
-	KotaModel selectKota(@Param("id") String id);
+	KotaModel selectKota(@Param("id") int id);
 	
 	
 	/*

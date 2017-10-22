@@ -5,4 +5,6 @@ import com.example.tugas1.model.KelurahanModel;
 
 public interface KelurahanService {
 	List<KelurahanModel> selectAllKelurahan();
+
+	KelurahanModel selectKelurahanById(int id_kelurahan);
 }

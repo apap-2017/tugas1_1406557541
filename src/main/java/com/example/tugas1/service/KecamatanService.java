@@ -1,8 +1,10 @@
 package com.example.tugas1.service;
 
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
+
 import com.example.tugas1.model.KecamatanModel;
-@Mapper
-public interface KecamatanServiceDB {
+
+public interface KecamatanService {
 	List<KecamatanModel> selectAllKecamatan();
+	KecamatanModel selectKecamatanById(int id_kecamatan);
 }

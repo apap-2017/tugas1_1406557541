@@ -2,12 +2,14 @@ package com.example.tugas1.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.One;
 
 import com.example.tugas1.model.KecamatanModel;
@@ -47,7 +49,7 @@ public interface KeluargaMapper {
 			@Result(property = "kelurahan", column = "id_kelurahan", javaType = KelurahanModel.class, one = @One(select = "selectKelurahan")),
 			@Result(property = "anggotaKeluarga", column = "id", javaType = List.class, many = @Many(select = "selectAnggotaKeluarga")),
 			})
-	KeluargaModel selectKeluargaById(@Param("id") String id);
+	KeluargaModel selectKeluargaById(@Param("id") int id);
 	
 	
 	@Select("SELECT id, nik, nama, tempat_lahir, tanggal_lahir, agama, status_perkawinan, pekerjaan, status_dalam_keluarga, is_wni, id_keluarga, jenis_kelamin "
@@ -67,7 +69,7 @@ public interface KeluargaMapper {
 			@Result(property = "id_keluarga", column = "id_keluarga"),
 			@Result(property = "jenis_kelamin", column = "jenis_kelamin"),
 			})
-	List<PendudukModel> selectAnggotaKeluarga(@Param("id_keluarga") String id_keluarga);
+	List<PendudukModel> selectAnggotaKeluarga(@Param("id_keluarga") int id_keluarga);
 	
 	
 	@Select("SELECT id, id_kecamatan, nama_kelurahan "
@@ -78,7 +80,7 @@ public interface KeluargaMapper {
 			@Result(property = "nama_kelurahan", column = "nama_kelurahan"),
 			@Result(property = "kecamatan", column = "id_kecamatan", javaType = KecamatanModel.class, one = @One(select = "selectKecamatan")),
 	})
-	KelurahanModel selectKelurahan(@Param("id_kelurahan") String id);
+	KelurahanModel selectKelurahan(@Param("id_kelurahan") int id);
 	
 	
 	@Select("SELECT id, id_kota, nama_kecamatan, kode_kecamatan "
@@ -88,11 +90,23 @@ public interface KeluargaMapper {
 			@Result(property = "kode_kecamatan", column = "kode_kecamatan"),
 			@Result(property = "kota", column = "id_kota", javaType = KotaModel.class, one = @One(select = "selectKota")),
 	})
-	KecamatanModel selectKecamatan(@Param("id_kecamatan") String id);
+	KecamatanModel selectKecamatan(@Param("id_kecamatan") int id);
 	
 	
 	@Select("SELECT id, nama_kota "
 			+ "FROM kota "
 			+"WHERE id = #{id_kota}")
-	KotaModel selectKota(@Param("id_kota") String id);
+	KotaModel selectKota(@Param("id_kota") int id);
+	
+	@Insert("INSERT INTO keluarga (nomor_kk, alamat, RT, RW, id_kelurahan) VALUES (#{nomor_kk}, #{alamat}, #{RT}, #{RW}, #{id_kelurahan})")
+	void addKeluarga (KeluargaModel keluarga);
+
+	@Select ("SELECT nomor_kk, alamat, RT, RW, id_kelurahan, is_tidak_berlaku "
+			+ "FROM keluarga "
+			+ "WHERE nomor_kk = #{nomor_kk}")
+	KeluargaModel selectKeluargaAja(String nomor_kk);
+
+	@Update("UPDATE keluarga SET is_tidak_berlaku = 1 "
+			+ "WHERE nomor_kk = #{nomor_kk}")
+	void updateTidakBerlaku(String nomor_kk);
 }

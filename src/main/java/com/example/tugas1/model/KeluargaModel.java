@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KeluargaModel {
-private String id;
+private int id;
 private String nomor_kk;
 private String alamat;
 private String RT;
 private String RW;
-private String id_kelurahan;
-private boolean is_tidak_berlaku;
+private int id_kelurahan;
+private int is_tidak_berlaku;
 private KelurahanModel kelurahan;
 private KecamatanModel kecamatan;
 private KotaModel kota;

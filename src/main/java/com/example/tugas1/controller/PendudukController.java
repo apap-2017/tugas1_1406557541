@@ -1,5 +1,7 @@
 package com.example.tugas1.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,9 +84,9 @@ public class PendudukController {
 			@RequestParam(value = "status_perkawinan", required = false) String status_perkawinan,
 			@RequestParam(value = "status_dalam_keluarga", required = false) String status_dalam_keluarga,
 			@RequestParam(value = "pekerjaan", required = false) String pekerjaan,
-			@RequestParam(value = "is_wni", required = false) boolean is_wni,
-			@RequestParam(value = "is_wafat", required = false) boolean is_wafat,
-			@RequestParam(value = "id_keluarga", required = false) String id_keluarga) {
+			@RequestParam(value = "is_wni", required = false) int is_wni,
+			@RequestParam(value = "is_wafat", required = false) int is_wafat,
+			@RequestParam(value = "id_keluarga", required = false) int id_keluarga) {
 		KeluargaModel keluargaa= keluargaDAO.selectKeluargaById(id_keluarga);
 		
 		String keluarga = keluargaa.getKelurahan().getKecamatan().getKode_kecamatan();
@@ -138,11 +140,19 @@ public class PendudukController {
 	public String deletePendudukSubmit(Model model, @PathVariable(value="nik", required=true) String nik) {
 		pendudukDAO.deletePenduduk(nik);
 		PendudukModel penduduk = pendudukDAO.selectPenduduk(nik);
-		String id_keluarga = penduduk.getId_keluarga();
-		//select keluarga by id_keluarga
-		//cek size list di keluargamodel
-			//kl 0, ubah status
-			//bikin query update keluarga
+		int id_keluarga = penduduk.getId_keluarga();
+		KeluargaModel keluarga = keluargaDAO.selectKeluargaById(id_keluarga);
+		List<PendudukModel> anggotaKel = keluarga.getAnggotaKeluarga();
+		int count = 0;
+		for (int i = 0; i < anggotaKel.size(); i++) {
+			if (anggotaKel.get(i).getIs_wafat() == 1) {
+				count++;
+			}
+		}
+		if (count == anggotaKel.size()) {
+			String nomor_kk = keluarga.getNomor_kk();
+			keluargaDAO.updateTidakBerlaku(nomor_kk);
+		}
 		model.addAttribute("penduduk", penduduk);
 		return "penduduk/penduduk-view";
 	}

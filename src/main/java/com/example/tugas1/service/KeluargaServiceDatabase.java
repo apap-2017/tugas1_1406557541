@@ -21,7 +21,7 @@ public class KeluargaServiceDatabase implements KeluargaService {
 	}
 	
 	@Override
-	public KeluargaModel selectKeluargaById(String id) {
+	public KeluargaModel selectKeluargaById(int id) {
 		log.info ("select keluarga with nomor_kk {}", id);
 		return keluargaMapper.selectKeluargaById(id);
 	}
@@ -29,5 +29,18 @@ public class KeluargaServiceDatabase implements KeluargaService {
 	@Override
 	public void addKeluarga(KeluargaModel keluarga) {
 		keluargaMapper.addKeluarga(keluarga);
+	}
+
+	@Override
+	public KeluargaModel selectKeluargaAja(String nomor_kk) {
+		// TODO Auto-generated method stub
+		return keluargaMapper.selectKeluargaAja(nomor_kk);
+	}
+
+	@Override
+	public void updateTidakBerlaku(String nomor_kk) {
+		// TODO Auto-generated method stub
+		keluargaMapper.updateTidakBerlaku(nomor_kk);
+		
 	}
 }

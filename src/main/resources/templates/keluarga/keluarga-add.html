@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<form name="sentMessage" id="addKeluargaForm"
-				action="keluarga/tambah" method="post">
+				action="/keluarga/tambah/submit" method="post">
 				<div class="form-group">
 					<label for="alamat" class="col-md-10 control-label">Alamat</label>
 					<div class="col-md-10 inputGroupContainer">
@@ -40,8 +40,13 @@
 					<label for="kelurahan" class="col-md-10 control-label">Kelurahan/Desa</label>
 					<div class="col-md-10 inputGroupContainer">
 						<div class="input-group">
-							<input name="kelurahan" class="form-control" type="text"
-								required="required" placeholder="Masukkan kelurahan.." />
+							<select required="required" name="kelurahan"
+								class="selectpicker form-control">
+								<option value="">Kelurahan</option>
+								<div th:each="kelurahan,iterationStatus: ${kelurahan}">
+									<option th:value="${kelurahan.id}" th:text="${kelurahan.kode_kelurahan} + ' - ' + ${kelurahan.nama_kelurahan}">Pilihan</option>
+								</div>
+							</select>
 						</div>
 					</div>
 				</div>
@@ -49,7 +54,7 @@
 					<label for="kecamatan" class="col-md-10 control-label">Kecamatan</label>
 					<div class="col-md-10 inputGroupContainer">
 						<div class="input-group">
-							<select required="required" name="kc"
+							<select required="required" name="kecamatan"
 								class="selectpicker form-control">
 								<option value="">Kecamatan</option>
 								<div th:each="kecamatan,iterationStatus: ${kecamatan}">
@@ -63,11 +68,11 @@
 					<label for="kota" class="col-md-10 control-label">Kota</label>
 					<div class="col-md-10 inputGroupContainer">
 						<div class="input-group">
-							<select required="required" name="kc"
+							<select required="required" name="kota"
 								class="selectpicker form-control">
-								<option value="">Kecamatan</option>
-								<div th:each="kecamatan,iterationStatus: ${kecamatan}">
-									<option th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}">Pilihan</option>
+								<option value="">Kota</option>
+								<div th:each="kota,iterationStatus: ${kota}">
+									<option th:value="${kota.id}" th:text="${kota.nama_kota}">Pilihan</option>
 								</div>
 							</select>
 						</div>

@@ -2,8 +2,10 @@ package com.example.tugas1.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.tugas1.dao.KelurahanMapper;
 import com.example.tugas1.model.KelurahanModel;
 
 @Service
@@ -16,7 +18,13 @@ public class KelurahanServiceDatabase implements KelurahanService {
 	public List<KelurahanModel> selectAllKelurahan() {
 		// TODO Auto-generated method stub
 		kelurahanMapper.selectAllKelurahan();
-		return null;
+		return kelurahanMapper.selectAllKelurahan();
+	}
+
+	@Override
+	public KelurahanModel selectKelurahanById(int id_kelurahan) {
+		// TODO Auto-generated method stub
+		return kelurahanMapper.selectKelurahanById(id_kelurahan);
 	}
 
 }

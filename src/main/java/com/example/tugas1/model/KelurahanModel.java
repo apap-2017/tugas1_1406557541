@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KelurahanModel {
-private String id;
-private String id_kecamatan;
+private int id;
+private int id_kecamatan;
 private String kode_kelurahan;
 private String nama_kelurahan;
 private String kode_pos;
