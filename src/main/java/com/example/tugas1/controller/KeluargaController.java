@@ -74,10 +74,6 @@ public class KeluargaController {
 			@RequestParam(value = "kecamatan", required = false) String id_kecamatan,
 			@RequestParam(value = "kota", required = false) String id_kota) {
 		
-//		KecamatanModel kecamatan = kecamatanDAO.selectKecamatanById(id_kecamatan);
-//		String kode_kecamatan = kecamatan.getKode_kecamatan();
-//		
-//		String kkAwal = kode_kecamatan.substring(0, 6);
 		
 		KelurahanModel kelurahan = kelurahanDAO.selectKelurahanById(id_kelurahan);
 		String kode_kelurahan = kelurahan.getKode_kelurahan();

@@ -207,6 +207,7 @@ public class PendudukController {
 				tanggal_lahir, pendudukAwal.getJenis_kelamin(), is_wni, id_keluarga, agama, pekerjaan,
 				status_perkawinan, status_dalam_keluarga, golongan_darah, is_wafat, null, null, null, null);
 		model.addAttribute("penduduk", pendudukBaru);
+		model.addAttribute("nikBaru", nikFinal);
 		pendudukDAO.updatePenduduk(pendudukBaru);
 		return "penduduk/success-update";
 	}
