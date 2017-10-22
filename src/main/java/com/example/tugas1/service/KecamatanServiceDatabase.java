@@ -29,6 +29,12 @@ public class KecamatanServiceDatabase implements KecamatanService {
 		log.info("Select kecamatan with id {}", id_kecamatan);
 		return kecamatanMapper.selectKecamatanById(id_kecamatan);
 	}
+
+	@Override
+	public List<KecamatanModel> selectKecamatanByKota(String id_kota) {
+		// TODO Auto-generated method stub
+		return kecamatanMapper.selectKecamatanByKota(id_kota);
+	}
 	
 
 }

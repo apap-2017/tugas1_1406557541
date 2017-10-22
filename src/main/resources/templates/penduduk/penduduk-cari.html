@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layout/master :: master">
+
+<div th:fragment="content" class="container">
+	<h3 class="my-4" th:text="'Cari Penduduk'">Cari Penduduk</h3>
+	<!--  Tambah Keluarga -->
+	<div class="row">
+		<div class="col-lg-12">
+			<form action="/penduduk/cari" method="GET" th:object="${penduduk}">
+
+				<input th:if="${id_kota != null}" id="id_kota" name="id_kota"
+					th:value="${id_kota}" type="hidden"></input> <input
+					th:if="${id_kecamatan != null}" id="id_kecamatan"
+					name="id_kecamatan" th:value="${id_kecamatan}" type="hidden"></input>
+					
+				<input th:if="${id_kelurahan != null}" id="id_kelurahan"
+					name="id_kelurahan" th:value="${id_kelurahan}" type="hidden"></input>
+					
+				<div class="form-group">
+					<label for="kota">Kota/Kabupaten</label> <select
+						class="form-control" name="id_kota" id="id_kota"
+						th:disabled="${id_kota != null}">
+						<option value="">Pilih Kota</option>
+						<option th:each="daftarKota : ${daftarKota}"
+							th:value="${daftarKota.id}"
+							th:text="${daftarKota.nama_kota}"
+							th:selected="${id_kota == daftarKota.id}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group" th:if="${id_kota != null}">
+					<label for="kecamatan">Kecamatan</label> <select
+						class="form-control" name="id_kecamatan" id="id_kecamatan"
+						th:disabled="${id_kecamatan != null}">
+						<option value="">Pilih Kecamatan</option>
+						<option th:each="daftarKecamatan : ${daftarKecamatan}"
+							th:value="${daftarKecamatan.id}"
+							th:text="${daftarKecamatan.nama_kecamatan}"
+							th:selected="${id_kecamatan == daftarKecamatan.id}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group" th:if="${id_kecamatan != null}">
+					<label for="kelurahan">Kelurahan</label> <select
+						class="form-control" name="id_kelurahan" id="id_kelurahan"
+						th:disabled="${id_kelurahan != null}">
+						<option value="">Pilih Kelurahan</option>
+						<option th:each="daftarKelurahan : ${daftarKelurahan}"
+							th:value="${daftarKelurahan.id}"
+							th:text="${daftarKelurahan.nama_kelurahan}"
+							th:selected="${id_kelurahan == daftarKelurahan.id}"></option>
+					</select>
+				</div>
+				
+				<button class="btn btn-primary" type="submit" value="save">Lihat</button>
+			</form>
+			<div class="col-sm-5" style="display: inline-block" th:if="${termuda != null}">
+				<h3 style="text-align: center">Penduduk Termuda</h3>
+				<table class="table table-bordered" style="text-align: center" >
+					<tr class="active">
+						<td>Nik</td>
+						<td th:text="${termuda.nik}">NIK</td>
+					</tr>
+					<tr>
+						<td>Nama</td>
+						<td th:text="${termuda.nama}">Nama</td>
+					</tr>
+					<tr class="active">
+						<td>Tanggal Lahir</td>
+						<td th:text="${termuda.tanggal_lahir}">Tanggal Lahir</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-sm-5" style="float: right" th:if="${tertua != null}">
+				<h3 style="text-align: center">Penduduk Tertua</h3>
+				<table class="table table-bordered" style="text-align: center">
+					<tr class="active">
+						<td>Nik</td>
+						<td th:text="${tertua.nik}">NIK</td>
+					</tr>
+					<tr>
+						<td>Nama</td>
+						<td th:text="${tertua.nama}">Nama</td>
+					</tr>
+					<tr class="active">
+						<td>Tanggal Lahir</td>
+						<td th:text="${tertua.tanggal_lahir}">Tanggal Lahir</td>
+					</tr>
+				</table>
+			</div>
+			<br/>
+			<table class="table table-bordered" id="mytable" th:if="${penduduk != null}">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Nama Lengkap</th>
+						<th>NIK</th>
+						<th>Jenis Kelamin</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="text-align: center"
+						th:each="penduduk,iterationStatus:${penduduk}">
+						<th style="text-align: center" th:text="${iterationStatus.count}">No</th>
+						<th th:text="${penduduk.nama}">Nama</th>
+						<th th:text="${penduduk.nik}">Nik</th>
+						<th th:switch="${penduduk.jenis_kelamin}">
+							<div th:case="1">Perempuan</div>
+							<div th:case="0">Laki-laki</div>
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--  end of Cari Penduduk -->
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#mytable').DataTable();
+	});
+</script>
+</html>

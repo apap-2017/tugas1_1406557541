@@ -15,4 +15,9 @@ public interface KecamatanMapper {
 	
 	@Select ("SELECT * FROM kecamatan where id = #{id_kecamatan}")
 	KecamatanModel selectKecamatanById(int id_kecamatan);
+
+	@Select ("SELECT * FROM kecamatan where id_kota = #{id_kota}")
+	List<KecamatanModel> selectKecamatanByKota(String id_kota);
+	
+	
 }

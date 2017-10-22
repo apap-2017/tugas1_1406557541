@@ -1,5 +1,7 @@
 package com.example.tugas1.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -40,7 +42,7 @@ public interface PendudukMapper {
 			})
 	PendudukModel selectPendudukAja (@Param("nik") String nik);
 	
-	@Select ("SELECT id, nik, nama, tempat_lahir, tanggal_lahir, id_keluarga, golongan_darah, agama, status_perkawinan, pekerjaan, is_wni, is_wafat "
+	@Select ("SELECT id, nik, nama, tempat_lahir, tanggal_lahir, id_keluarga, golongan_darah, agama, status_perkawinan, status_dalam_keluarga, pekerjaan, is_wni, is_wafat "
 			+ "FROM penduduk "
 			+ "WHERE nik = #{nik}")
 	@Results(value = { @Result(property = "nik", column = "nik"),
@@ -53,6 +55,7 @@ public interface PendudukMapper {
 			@Result(property = "golongan_darah", column = "golongan_darah"),
 			@Result(property = "agama", column = "agama"),
 			@Result(property = "status_perkawinan", column = "status_perkawinan"),
+			@Result(property = "status_dalam_keluarga", column = "status_dalam_keluarga"),
 			@Result(property = "pekerjaan", column = "pekerjaan"),
 			@Result(property = "is_wni", column = "is_wni"),
 			@Result(property = "is_wafat", column = "is_wafat"),
@@ -99,7 +102,7 @@ public interface PendudukMapper {
 	
 	
 	/*
-	 * Method deletePenduduk untuk menghapus data penduduk dengan mengubah status wafat
+	 * Method deletePenduduk untuk mengubah status wafat
 	 */
 	@Update("UPDATE penduduk SET is_wafat = 1 "
 			+ "WHERE nik = #{nik}")
@@ -109,7 +112,29 @@ public interface PendudukMapper {
 	/*
 	 * Method addPenduduk untuk menambah penduduk ke database
 	 */
-	@Insert("INSERT INTO penduduk (nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, is_wni, id_keluarga, agama, pekerjaan, status_perkawinan, status_dalam_keluarga, golongan_darah, is_wafat) VALUES "
-			+ "(#{nik}, #{nama}, #{tempat_lahir}, #{tanggal_lahir}, #{jenis_kelamin}, #{is_wni}, #{id_keluarga}, #{agama}, #{pekerjaan}, #{status_perkawinan}, #{status_dalam_keluarga}, #{golongan_darah}, #{is_wafat})")
+	@Insert("INSERT INTO penduduk (nik, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, is_wni, id_keluarga, agama, pekerjaan, status_perkawinan, status_dalam_keluarga, golongan_darah, is_wafat) "
+			+ "VALUES (#{nik}, #{nama}, #{tempat_lahir}, #{tanggal_lahir}, #{jenis_kelamin}, #{is_wni}, #{id_keluarga}, #{agama}, #{pekerjaan}, #{status_perkawinan}, #{status_dalam_keluarga}, #{golongan_darah}, #{is_wafat})")
 	void addPenduduk(PendudukModel penduduk);
+	
+	
+	/*
+	 * Method updatePenduduk untuk mengubah data penduduk
+	 */
+	@Update("UPDATE penduduk "
+			+ "SET nik=#{nik}, nama = #{nama}, tempat_lahir = #{tempat_lahir}, tanggal_lahir = #{tanggal_lahir}, jenis_kelamin = #{jenis_kelamin}, is_wni = #{is_wni}, id_keluarga = #{id_keluarga}, agama = #{agama}, pekerjaan = #{pekerjaan}, status_perkawinan = #{status_perkawinan}, status_dalam_keluarga = #{status_dalam_keluarga}, golongan_darah = #{golongan_darah} "
+			+ "WHERE id = #{id}")
+    void updatePenduduk(PendudukModel penduduk);
+
+	@Select("SELECT nik, nama, jenis_kelamin FROM penduduk JOIN keluarga ON penduduk.id_keluarga = keluarga.id JOIN "
+			+ "kelurahan ON keluarga.id_kelurahan = kelurahan.id JOIN kecamatan ON kelurahan.id_kecamatan = kecamatan.id JOIN "
+			+ "kota ON kecamatan.id_kota = kota.id WHERE keluarga.id_kelurahan = #{id_kelurahan}")
+	List<PendudukModel> selectPendudukByIdKelurahan(String id_kelurahan);
+	
+	@Select("SELECT DISTINCT nama, nik, tanggal_lahir, (YEAR(CURDATE())-YEAR(tanggal_lahir)) AS usia FROM penduduk JOIN "
+			+ "keluarga ON penduduk.id_keluarga = keluarga.id WHERE keluarga.id_kelurahan = #{id_kelurahan} ORDER BY usia ASC limit 1")
+	 	PendudukModel pendudukTermuda(String id_kelurahan);
+	
+	@Select("SELECT DISTINCT nama, nik, tanggal_lahir, (YEAR(CURDATE())-YEAR(tanggal_lahir)) AS usia FROM penduduk JOIN "
+			+ "keluarga ON penduduk.id_keluarga = keluarga.id WHERE keluarga.id_kelurahan = #{id_kelurahan} ORDER BY usia DESC limit 1")
+	PendudukModel pendudukTertua(String id_kelurahan);
 }

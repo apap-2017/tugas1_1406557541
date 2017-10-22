@@ -14,4 +14,7 @@ public interface KelurahanMapper {
 
 	@Select ("SELECT * FROM kelurahan WHERE id=#{id_kelurahan}")
 	KelurahanModel selectKelurahanById(int id_kelurahan);
+
+	@Select ("SELECT * FROM kelurahan WHERE id_kecamatan=#{id_kecamatan}")
+	List<KelurahanModel> selectKelurahanByKecamatan(String id_kecamatan);
 }

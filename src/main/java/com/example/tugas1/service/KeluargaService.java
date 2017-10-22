@@ -7,5 +7,6 @@ public interface KeluargaService {
 	KeluargaModel selectKeluargaById (int id);
 	void addKeluarga (KeluargaModel keluarga);
 	KeluargaModel selectKeluargaAja(String nomor_kk);
-	void updateTidakBerlaku(String nomor_kk);
+	void updateKeluarga (KeluargaModel keluarga);
+	void updateTidakBerlaku(int id);
 }

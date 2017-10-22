@@ -27,5 +27,11 @@ public class KelurahanServiceDatabase implements KelurahanService {
 		return kelurahanMapper.selectKelurahanById(id_kelurahan);
 	}
 
+	@Override
+	public List<KelurahanModel> selectKelurahanByKecamatan(String id_kecamatan) {
+		// TODO Auto-generated method stub
+		return kelurahanMapper.selectKelurahanByKecamatan(id_kecamatan);
+	}
+
 }
 

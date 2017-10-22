@@ -3,9 +3,10 @@
 	th:include="/layout/master :: master">
 
 <div th:fragment="content" class="container">
-	<h3 class="my-4" th:text="${penduduk}"></h3>
-	<center>
-		<h3> Penduduk Berhasil Ditambahkan</h3>
-	</center>
+		<h3 class="my-4">Sukses!</h3>
+		<h4 th:text="'Penduduk dengan NIK ' + ${nikBaru} + ' berhasil ditambah.'">Sukses</h4>
+		<div>
+			<a class="btn btn-info" th:href="'/'"> Home </a>
+		</div>
 </div>
 </html>

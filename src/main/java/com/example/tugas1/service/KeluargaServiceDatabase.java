@@ -33,14 +33,17 @@ public class KeluargaServiceDatabase implements KeluargaService {
 
 	@Override
 	public KeluargaModel selectKeluargaAja(String nomor_kk) {
-		// TODO Auto-generated method stub
 		return keluargaMapper.selectKeluargaAja(nomor_kk);
 	}
 
 	@Override
-	public void updateTidakBerlaku(String nomor_kk) {
-		// TODO Auto-generated method stub
-		keluargaMapper.updateTidakBerlaku(nomor_kk);
+	public void updateTidakBerlaku(int id) {
+		keluargaMapper.updateTidakBerlaku(id);
 		
+	}
+
+	@Override
+	public void updateKeluarga(KeluargaModel keluarga) {
+		keluargaMapper.updateKeluarga(keluarga);
 	}
 }

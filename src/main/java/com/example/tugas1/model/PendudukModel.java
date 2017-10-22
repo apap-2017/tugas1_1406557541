@@ -13,7 +13,7 @@ private String nik;
 private String nama;
 private String tempat_lahir;
 private String tanggal_lahir;
-private String jenis_kelamin;
+private int jenis_kelamin;
 private int is_wni;
 private int id_keluarga;
 private String agama;

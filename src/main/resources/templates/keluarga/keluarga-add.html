@@ -44,7 +44,8 @@
 								class="selectpicker form-control">
 								<option value="">Kelurahan</option>
 								<div th:each="kelurahan,iterationStatus: ${kelurahan}">
-									<option th:value="${kelurahan.id}" th:text="${kelurahan.kode_kelurahan} + ' - ' + ${kelurahan.nama_kelurahan}">Pilihan</option>
+									<option th:value="${kelurahan.id}"
+										th:text="${kelurahan.kode_kelurahan} + ' - ' + ${kelurahan.nama_kelurahan}">Pilihan</option>
 								</div>
 							</select>
 						</div>
@@ -58,7 +59,8 @@
 								class="selectpicker form-control">
 								<option value="">Kecamatan</option>
 								<div th:each="kecamatan,iterationStatus: ${kecamatan}">
-									<option th:value="${kecamatan.id}" th:text="${kecamatan.nama_kecamatan}">Pilihan</option>
+									<option th:value="${kecamatan.id}"
+										th:text="${kecamatan.nama_kecamatan}">Pilihan</option>
 								</div>
 							</select>
 						</div>

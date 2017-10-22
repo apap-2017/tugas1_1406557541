@@ -107,6 +107,12 @@ public interface KeluargaMapper {
 	KeluargaModel selectKeluargaAja(String nomor_kk);
 
 	@Update("UPDATE keluarga SET is_tidak_berlaku = 1 "
-			+ "WHERE nomor_kk = #{nomor_kk}")
-	void updateTidakBerlaku(String nomor_kk);
+			+ "WHERE id = #{id}")
+	void updateTidakBerlaku(int id);
+	
+	
+	@Update("UPDATE keluarga "
+			+ "SET nomor_kk = #{nomor_kk}, alamat = #{alamat}, RT = #{RT}, RW = #{RW}, id_kelurahan = #{id_kelurahan} "
+			+ "WHERE ")
+	void updateKeluarga(KeluargaModel keluarga);
 }

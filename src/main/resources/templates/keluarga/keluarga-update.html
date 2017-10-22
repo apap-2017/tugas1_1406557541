@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:include="/layout/master :: master">
+
+<div th:fragment="content" class="container">
+	<h3 class="my-4" th:text="'Update Keluarga'">Ubah Keluarga</h3>
+	<!--  Tambah Keluarga -->
+	<div class="row">
+		<div class="col-lg-12">
+			<form name="updateKeluargaForm" id="updateKeluargaForm"
+				th:action="@{/keluarga/ubah/submit/} + ${keluarga.nomor_kk}"
+				th:object="${keluarga}" method="POST">
+				<div class="form-group">
+					<label for="alamat" class="col-md-10 control-label">Alamat</label>
+					<div class="col-md-10 inputGroupContainer">
+						<div class="input-group">
+							<input name="alamat" th:value="${keluarga.alamat}"
+								th:field="*{alamat}" class="form-control" type="text"
+								required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="RT" class="col-md-10 control-label">RT</label>
+					<div class="col-md-10 inputGroupContainer">
+						<div class="input-group">
+							<input name="RT" th:value="${keluarga.RT}" th:field="*{RT}"
+								class="form-control" type="text" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="RW" class="col-md-10 control-label">RW</label>
+					<div class="col-md-10 inputGroupContainer">
+						<div class="input-group">
+							<input name="RW" th:value="${keluarga.RW}" th:field="*{RW}"
+								class="form-control" type="text" required="required" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="kelurahan" class="col-md-10 control-label">Kelurahan/Desa</label>
+					<div class="col-md-10 inputGroupContainer">
+						<div class="input-group">
+							<select required="required" name="kelurahan" id="kelurahan" th:field="*{kelurahan}"
+								class="selectpicker form-control">
+								<option value="">Pilih Kelurahan</option>
+								<option th:each="kelurahan,iterationStatus: ${allKelurahan}"
+									th:value="${kelurahan.id}"
+									th:text="${kelurahan.nama_kelurahan}"
+									th:selected="${keluarga.id_kelurahan == kelurahan.id ? 'selected' : ''}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="kecamatan" class="col-md-10 control-label">Kecamatan</label>
+					  <div class="col-md-10 inputGroupContainer">
+						<div class="input-group">
+							<select required="required" name="kecamatan" id="kecamatan"
+								class="selectpicker form-control">
+								<option value="">Pilih Kecamatan</option>
+								<option th:each="kecamatan,iterationStatus: ${kecamatan}" th:field="*{kecamatan}"
+									th:value="${kecamatan.id}"
+									th:text="${kecamatan.nama_kecamatan}"
+									th:selected="${keluarga.kelurahan.kecamatan.id == kecamatan.id ? 'selected' : ''}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="kota" class="col-md-10 control-label">Kota</label>
+					 <div class="col-md-10 inputGroupContainer">
+						<div class="input-group">
+							<select required="required" name="kota"
+								class="selectpicker form-control">
+								<option value="">Kota</option>
+								<option th:each="kota,iterationStatus: ${kota}" th:field="*{kota}"
+									th:value="${kota.id}"
+									th:text="${kota.nama_kota}"
+									th:selected="${keluarga.kelurahan.kecamatan.kota.id == kota.id ? 'selected' : ''}">
+								</option>
+							</select>
+						</div>
+					</div>
+				</div> 
+				<div class="form-group">
+					<div class="col-md-10">
+						<button type="submit" class="btn btn-primary">Ubah</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--  end of Tambah Keluarga -->
+</div>
+<script th:inline="javascript">
+	var allKelurahan = [[${allKelurahan}]];
+	var kelurahans = {};
+	
+	$( document ).ready(function() {
+		allKelurahan.forEach(function(kelurahan) {
+			kelurahans[kelurahan.id] = kelurahan;	
+		})
+	});
+	
+	$('#kelurahan').on('change', function() {
+	  $('#kecamatan').val(kelurahans[this.value].nama_kecamatan);
+	  $('#kota').val(kelurahans[this.value].nama_kota);
+	  $('#kode_kecamatan').val(kelurahans[this.value].kode_kecamatan);
+	})
+</script>
+</html>
